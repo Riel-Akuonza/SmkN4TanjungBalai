@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>XIRPL 1 Album</title>
+  <style>
+    :root {
+      --primary: #7f5af0;
+      --dark: #16161a;
+      --light: #fffffe;
+      --solid-primary: #5b4dcf;
+      --accent: #d4d7f5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--dark);
+      color: var(--light);
+      transition: background 0.3s ease;
+      overflow-x: hidden;
+    }
+
+    #bg-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      object-position: center;
+      z-index: -1;
+      filter: brightness(0.3);
+      transition: filter 0.5s ease;
+      pointer-events: none;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--primary);
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      animation: slideIn 0.8s ease-out forwards;
+      opacity: 0;
+    }
+
+    .logo img {
+      width: 32px;
+      margin-right: 10px;
+      border-radius: 50%;
+    }
+
+    .logo span {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--light);
+      position: relative;
+      padding: 6px 10px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .nav-links a:hover {
+      background-color: var(--solid-primary);
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: var(--solid-primary);
+      padding: 10px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 999;
+      min-width: 120px;
+    }
+
+    .dropdown-content a {
+      display: block;
+      text-align: left;
+      padding: 10px;
+      margin: 4px 0;
+      border-radius: 8px;
+      background-color: var(--primary);
+      color: var(--light);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .dropdown-content a:hover {
+      background-color: var(--accent);
+      color: var(--dark);
+    }
+
+    .dropdown.active .dropdown-content {
+      display: block;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+      margin: 4px 0;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: var(--primary);
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        z-index: 999;
+        text-align: center;
+        padding: 20px 0;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      #bg-image {
+        object-position: center;
+      }
+    }
+
+    main {
+      padding: 60px 20px;
+      text-align: center;
+      animation: fadeIn 1s ease-out;
+    }
+
+  .marquee {
+    background-color: #130b2b4d;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+  }
+
+    .main-btn {
+      animation: fadeIn 1s ease-out;
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--light);
+      background-color: var(--primary);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .main-btn:hover {
+      background-color: var(--solid-primary);
+      transform: scale(1.05);
+    }
+
+    @keyframes bgFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+    filter: brightness(0.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(0.3);
+  }
+}
+
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #cfcfcf;
+      font-size: 1.1rem;
+    }
+
+   
+  </style>
+</head>
+<body>
+
+  <!-- Background Image -->
+  <img id="bg-image" src="aset/bg.jpg" alt="Background" />
+
+  <!-- Floating Notification -->
+  <div id="notif-float" style="
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--solid-primary);
+    color: var(--light);
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s, transform 0.4s;
+    z-index: 9999;
+    pointer-events: none;
+  ">
+    Maaf, halaman ini dalam tahap pengerjaan 😅
+  </div>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">
+      <img src="aset/icon.png" alt="logo">
+      <span>XIRPL 1</span>
+    </div>
+
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#" onclick="showNotif()">Download</a>
+      <a href="About/anggota.html">Anggota</a>
+      <a href="#" onclick="showNotif()">FAQ</a>
+      <a href="About/about.html">About</a>
+    </div>
+  </nav>
+
+<marquee class="marquee"><h4>Hai semuanya, selamat datang </h4></marquee>
+
+  <!-- Main Content -->
+  <main>
+    <h1 style="animation: slideIn 0.8s ease-out forwards; opacity: 0;">Welcome back EVERYONE!</h1>
+    <p>Selamat datang di website kami <b>SMK Negeri 4 Tanjung Balai</b>📸✨</p>
+    <button onclick="showNotif()" class="main-btn">Masuk</button>
+  </main>
+
+
+  <!-- JS -->
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+
+    function toggleDropdown(event) {
+      event.stopPropagation();
+      const dropdown = event.currentTarget;
+      dropdown.classList.toggle("active");
+
+      document.querySelectorAll(".dropdown").forEach(d => {
+        if (d !== dropdown) d.classList.remove("active");
+      });
+    }
+
+    document.addEventListener("click", () => {
+      document.querySelectorAll(".dropdown").forEach(d => d.classList.remove("active"));
+    });
+
+    function showNotif() {
+      const notif = document.getElementById("notif-float");
+      notif.style.opacity = "1";
+      notif.style.transform = "translateY(0)";
+      setTimeout(() => {
+        notif.style.opacity = "0";
+        notif.style.transform = "translateY(20px)";
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>

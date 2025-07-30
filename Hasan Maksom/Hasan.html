@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Postingan Utama</title>
+  <style>
+    :root {
+      --primary: #7f5af0;
+      --dark: #16161a;
+      --light: #fffffe;
+      --accent: #d4d7f5;
+      --gray: #a1a1aa;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: #f0f0f0;
+      color: #333;
+      text-align: center;
+      padding-top: 80px;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      -webkit-user-drag: none;
+      user-select: none;
+    }
+
+    body::after {
+      content: "Screenshot dinonaktifkan";
+      display: none;
+    }
+
+    body {
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+      user-select: none;
+    }
+
+    body {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    a.back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 20px auto;
+      color: white;
+      background-color: var(--primary);
+      text-decoration: none;
+      border-radius: 50px;
+      padding: 10px 20px;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    a.back-link:hover {
+      background-color: #5d3fd3;
+    }
+
+    .notif {
+      position: fixed;
+      top: -100px;
+      left: 0;
+      width: 100%;
+      background-color: #4a00e0;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: top 0.6s ease;
+      z-index: 9999;
+    }
+
+    .postingan {
+      max-width: 400px;
+      margin: 40px auto;
+      background-color: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    .postingan .img-container {
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+    }
+
+    .postingan img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .caption {
+      padding: 16px;
+      font-size: 16px;
+      background-color: #fafafa;
+    }
+
+    .read-more {
+      display: inline-block;
+      margin-top: 10px;
+      background-color: var(--primary);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .read-more:hover {
+      background-color: #5d3fd3;
+    }
+  </style>
+</head>
+<body oncontextmenu="return false" onkeydown="return false">
+
+  <div class="notif" id="notifBar">
+    🎉 Selamat datang di Album Hasan Fahri
+  </div>
+
+  <a href="../Angkot-main.html" class="back-link">⬅ Kembali ke Beranda</a>
+
+  <div class="postingan">
+    <div class="img-container">
+      <img src="Asan.png" alt="Foto utama" />
+    </div>
+    <div class="caption">
+      nama Hasan Fahri, nama ayah Maksom Siburian, dia tinggal di jalan sungkes ( jalan Danau )<br>
+      <a class="read-more" href="#">Read</a>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener("load", function() {
+      const notif = document.getElementById("notifBar");
+      notif.style.top = "0";
+      setTimeout(() => {
+        notif.style.top = "-100px";
+      }, 3000);
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'PrintScreen') {
+        alert('Screenshot tidak diperbolehkan!');
+        e.preventDefault();
+      }
+    });
+  </script>
+
+</body>
+</html>

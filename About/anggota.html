@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anggota dan Moderator</title>
+  <style>
+    :root {
+      --primary: #7f5af0;
+      --dark: #16161a;
+      --light: #fffffe;
+      --accent: #d4d7f5;
+      --gray: #a1a1aa;
+    }
+     * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #1c1b2f;
+      color: #fff;
+      padding: 20px;
+      margin: 0;
+    }
+
+    header h1 {
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .profile-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .profile-box {
+      display: flex;
+      align-items: center;
+      background: #2e2d45;
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    }
+
+    .profile-box img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 15px;
+    }
+
+    .profile-info h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .profile-info p {
+      margin: 0 0 10px;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .social-icons {
+      margin-top: 10px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      transform: scale(1.1);
+    }
+
+    .social-icons img {
+      width: 24px;
+      height: 24px;
+      display: block;
+    }
+
+    .read-more {
+      padding: 6px 18px;
+      font-size: 13px;
+      background: linear-gradient(135deg, #6a00ff, #9e00ff);
+      color: white;
+      border-radius: 20px;
+      transition: background 0.3s ease, transform 0.2s;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .read-more:hover {
+      transform: translateY(-2px);
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+      gap: 10px;
+    }
+
+    .pagination button {
+      padding: 7px 16px;
+      font-size: 13px;
+      background: #444;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .pagination button:hover {
+      background: #666;
+    }
+
+    .pagination .hidden {
+      display: none;
+    }
+
+    .page-indicator {
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    @media (max-width: 600px) {
+      .social-icons img {
+        width: 20px;
+        height: 20px;
+      }
+
+      .read-more {
+        font-size: 12px;
+        padding: 5px 14px;
+      }
+
+      .pagination button {
+        font-size: 12px;
+        padding: 6px 12px;
+      }
+
+      .page-indicator {
+        font-size: 13px;
+      }
+    }
+
+      a.back-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    a.back-link:hover {
+      background-color: var(--accent);
+      color: var(--dark);
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Anggota - Anggota:</h2>
+  <div class="profile-container" id="profileContainer"></div>
+
+  <div class="pagination">
+    <button id="backBtn" onclick="prevPage()">Back</button>
+    <span class="page-indicator" id="pageIndicator">1/1</span>
+    <button id="nextBtn" onclick="nextPage()">Next</button>
+  </div>
+
+      <a href="../Angkot-main.html" class="back-link">⬅ Kembali ke Beranda</a>
+  </main>
+
+  <script>
+    const profiles = [
+      {
+        img: "../aset/Riel.png",
+        name: "Riel Akuonza",
+        desc: "Development dan juga sebagai Admin dari pengembangan situs ini. 😏",
+        instagram: "https://www.instagram.com/onzarill",
+        whatsapp: "https://wa.me/6282275344961",
+        tiktok: "https://www.tiktok.com/@rielakuonza01"
+      },
+      {
+        img: "../M Farhan/icon.png",
+        name: "M Farhan",
+        desc: "Moderator grub dan spesies langka yang suka Satanic 😑",
+        instagram: "https://www.instagram.com/__luciver?igsh=MTBlcm40MmgweGxkeg==",
+        whatsapp: "https://wa.me/6283179976655",
+        tiktok: "https://www.tiktok.com/@natus_vincerr"
+      },
+      {
+        img: "../Hasan Maksom/icon.png",
+        name: "Hasan Fahri",
+        desc: "Ketus baik dan juga ramah semua orang 🙄",
+        instagram: "#",
+        whatsapp: "#",
+        tiktok: "#"
+      },
+      {
+        img: "../Jody/BG.png",
+        name: "Joddy Yansa",
+        desc: "Si joging dan situkang rosting tingkat Nasional 🤐",
+        instagram: "#",
+        whatsapp: "#",
+        tiktok: "#"
+      },
+      {
+        img: "../Andian/icon.png",
+        name: "Adrian Ganteng",
+        desc: "Si ganteng yg sangat ganteng😛",
+        instagram: "#",
+        whatsapp: "#",
+        tiktok: "#"
+      },
+      {
+        img: "../Ipull Sangkot/icon.png",
+        name: "Ipull Ireng",
+        desc: "Si Black Monkey itam monyet 🙈",
+        instagram: "#",
+        whatsapp: "#",
+        tiktok: "#"
+      },
+      {
+        img: "../Bangun Shabana/icon.png",
+        name: "Bangun Shabana",
+        desc: "Orang paling ramah, tapi otak bokep 😑",
+        instagram: "#",
+        whatsapp: "#",
+        tiktok: "#"
+      },
+      {
+        img: "../Dika/icon.png",
+        name: "Dika Sitorus Pane",
+        desc: "Orang tak tau untung banyak gaya, banyak tingkah, manjijikan, tak bermodal jadi orang, tukang utang, GAY, Suka mencium anak Orang dll. 🤬",
+        instagram: "#",
+        whatsapp: "#",
+        tiktok: "#"
+      },
+      {
+        img: "../aset/default.png",
+        name: "Reyhan Geraldi",
+        desc: "SI  TAMVAN",
+        instagram: "#",
+        whatsapp: "#",
+        tiktok: "#"
+      },
+      {
+        img: "../aset/default.png",
+        name: "Andreaana Simanjuntak",
+        desc: "Sipaling sok ganteng, cowok nya simela, orang selak lancang, tapi muka kayak orang bagan, mukonya kayak orang make. 🤪",
+        instagram: "#",
+        whatsapp: "#",
+        tiktok: "#"
+      }
+    ];
+
+    const container = document.getElementById("profileContainer");
+    const backBtn = document.getElementById("backBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const pageIndicator = document.getElementById("pageIndicator");
+
+    let currentPage = 1;
+    const perPage = 5;
+    const totalPages = Math.ceil(profiles.length / perPage);
+
+    function showProfiles() {
+      container.innerHTML = "";
+      const start = (currentPage - 1) * perPage;
+      const end = start + perPage;
+      const pageProfiles = profiles.slice(start, end);
+
+      pageProfiles.forEach(profile => {
+        container.innerHTML += `
+          <div class="profile-box">
+            <img src="${profile.img}" alt="${profile.name}">
+            <div class="profile-info">
+              <h3>${profile.name}</h3>
+              <p>${profile.desc}</p>
+              <div class="social-icons">
+                <a href="${profile.instagram}" target="_blank"><img src="../aset/instagram.png" alt="IG"></a>
+                <a href="${profile.whatsapp}" target="_blank"><img src="../aset/whatsapp.png" alt="WA"></a>
+                <a href="${profile.tiktok}" target="_blank"><img src="../aset/tik-tok.png" alt="TikTok"></a>
+                <a class="read-more" href="#">Read</a>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      // Update tombol + indikator halaman
+      backBtn.classList.toggle("hidden", currentPage === 1);
+      nextBtn.classList.toggle("hidden", currentPage === totalPages);
+      pageIndicator.textContent = `${currentPage}/${totalPages}`;
+    }
+
+    function nextPage() {
+      if (currentPage < totalPages) {
+        currentPage++;
+        showProfiles();
+      }
+    }
+
+    function prevPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        showProfiles();
+      }
+    }
+
+    // Initial load
+    showProfiles();
+  </script>
+
+
+ <!---  Maintence Projeck Download --->
+  <div id="notif-float" style="
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--solid-primary);
+  color: var(--light);
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s, transform 0.4s;
+  z-index: 9999;
+  pointer-events: none;
+">
+  Maaf, halaman ini dalam tahap pengerjaan ⚠
+</div>
+
+<script>
+  function showNotif() {
+  const notif = document.getElementById("notif-float");
+  notif.style.opacity = "1";
+  notif.style.transform = "translateY(0)";
+
+  setTimeout(() => {
+    notif.style.opacity = "0";
+    notif.style.transform = "translateY(20px)";
+  }, 3000);
+}
+</script>
+
+</body>
+</html>
